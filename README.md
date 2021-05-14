@@ -14,7 +14,7 @@
 
 # windows支持64位的python,3.8或3.7,linux系统支持python3.6或python3.7
 
-## windows使用说明
+## windows使用说明(路径写死了)
 下载本项目代码压缩包，放在C盘根目录下，解压，最终代码在C:\singlecoin\下。如果是git下载，也请代码放在C:\singlecoin\下，建议使用git下载，方便后续更新
 
 先下载https://download.microsoft.com/download/5/f/7/5f7acaeb-8363-451f-9425-68a90f98b238/visualcppbuildtools_full.exe
@@ -32,7 +32,7 @@ strategies下的base_w37.pyd重命名为base.pyd,
 
 如果后续有更新代码，可以直接git下载就好了。下载好后，关掉cdm窗口，重新打开窗口执行python3 Start.py就好了
 
-## linux使用说明
+## linux使用说明(路径写死了)
 下载本项目代码压缩包，放在/var/games/目录下，解压，最终代码在/var/games/singlecoin/下。
 
 如果是git下载，也请代码放在/var/games/singlecoin/下，建议使用git下载，方便后续更新
