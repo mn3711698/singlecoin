@@ -22,11 +22,11 @@
 
 安装相关库(只支持python3)  pip3 install -r requirements.txt 或 pip install -r requirements.txt
 
-填好config.py里边的配置项，到此，准备工作做好。在项目目录C:\singlecoin\下执行python3 Start.py
-
-如果遇到启动不了，要先确认python是不是64版本，如果使用的是python3.7要将RunUse里的TradeRun_w37.pyd重命名为TradeRun.pyd，
+填好config.py里边的配置项，确认python是不是64版本，如果使用的是python3.7要将RunUse里的TradeRun_w37.pyd重命名为TradeRun.pyd，
 strategies下的base_w37.pyd重命名为base.pyd,
 如果使用的是python3.8要将RunUse里的TradeRun_w38.pyd重命名为TradeRun.pyd,strategies下的base_w38.pyd重命名为base.pyd
+
+到此，准备工作做好。在项目目录C:\singlecoin\下执行python3 Start.py,就可以躺着赚钱了
 
 相关持仓及订单信息请看币安的网页或者APP对应的交易对下的数据。
 
@@ -39,11 +39,11 @@ strategies下的base_w37.pyd重命名为base.pyd,
 
 安装相关库(只支持python3)  pip3 install -r requirements.txt 或 pip install -r requirements.txt
 
-填好config.py里边的配置项，到此所有准备工作都做好了。在项目目录/var/games/singlecoin/下执行python3 Start.py 或python Start.py
-
-如果遇到启动不了，要先确认python是不是64版本，如果使用的是python3.7要将RunUse里的TradeRun_l37.so重命名为TradeRun.so，
+填好config.py里边的配置项，确认python版本，如果使用的是python3.7要将RunUse里的TradeRun_l37.so重命名为TradeRun.so，
 strategies下的base_l37.so重命名为base.so,
 如果使用的是python3.6要将RunUse里的TradeRun_l36.so重命名为TradeRun.so,strategies下的base_l36.so重命名为base.so
+
+到此所有准备工作都做好了。在项目目录/var/games/singlecoin/下执行python3 Start.py 或python Start.py ,就可以躺着赚钱了
 
 相关持仓及订单信息请看币安的网页或者APP对应的交易对下的数据。
 
