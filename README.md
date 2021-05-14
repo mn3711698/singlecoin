@@ -53,7 +53,7 @@ strategies下的base_l37.so重命名为base.so,
 
 建议使用Supervisor启动
 
-如果后续有更新代码，可以直接git下载就好了。下载好后，关掉cdm窗口，重新打开窗口执行python3 Start.py就好了
+如果后续有更新代码，可以直接git下载就好了。重新执行python3 Start.py就好了
 
 ## 关于代码更新说明
 建议使用git命令来下载，这样更新就不影响。
