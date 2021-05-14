@@ -1,0 +1,10 @@
+cython
+requests
+gunicorn
+gevent
+pandas
+python-socketio
+websocket-client
+apscheduler
+
+
