@@ -14,4 +14,4 @@ dingding_token = ""  # 钉钉webhook的access_token
 wx_openid = ""  # 关注简道斋后发送openid得到的那一串字符就是这个
 tactics_flag = 1  # 此为机器人执行策略计算无信号是否发送钉钉消息，1为发送，不发送请留空或其他值
 slOffset = 4.5  # on_pos_data里的self.slOffset，当你觉得winPoints值的利润足够了，那当最高(低)价格回撤本值就止盈
-winPoints = 0.12  # on_pos_data里的self.winPoints,当你觉得这个利润已经足够了，那就止盈
+winPoints = 0.12  #  on_pos_data里的self.winPoints,当你觉得这个利润已经足够了，那就止盈
