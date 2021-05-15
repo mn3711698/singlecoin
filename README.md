@@ -2,7 +2,7 @@
 
 ## 有人担心安全，有人认为胜率造假，我只能说担心安全的请不要用，担心造假的我可以上图，但胜率这个还是建议使用者自己蚂蚁仓实盘试一下。
 
-![](https://github.com/mn3711698/singlecoin/blob/main/order.png)
+![img](https://github.com/mn3711698/singlecoin/blob/main/order.png)
 
 ## 本项目只是提供代码，不对使用者因使用本代码实际产生的盈亏负责(测试时,使用蚂蚁仓跑ETHUSDT胜率百分百)
 
