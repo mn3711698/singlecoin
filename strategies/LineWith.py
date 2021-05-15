@@ -7,6 +7,7 @@ from datetime import datetime
 from strategies import Base
 from getaway.send_msg import dingding, wx_send_msg
 
+
 class LineWith(Base):
 
     def on_pos_data(self, pos_dict):
@@ -44,7 +45,7 @@ class LineWith(Base):
                 enter_price = self.bid2  # +1
                 res_sell = self.sell(enter_price, abs(self.pos))  # 平多
                 HYJ_jd_first = "多单止盈平仓:交易对:%s,当前利润:%s,最大利润:%s,最大亏损:%s" % (
-                    self.symbol, self.unRealizedProfit,self.maxunRealizedProfit, self.lowProfit)
+                    self.symbol, self.unRealizedProfit, self.maxunRealizedProfit, self.lowProfit)
                 HYJ_jd_tradeType = "平多"
                 HYJ_jd_curAmount = "%s" % self.enter_price
                 self.stop_price = 0
@@ -60,7 +61,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"多单winPoints止盈交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.pos < 0 and self.last_price - self.low_price > self.slOffset:  # 空单,回撤超过slOffset
@@ -84,7 +85,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"空单winPoints止盈交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
         else:
             self.sync_data()
@@ -123,7 +124,7 @@ class LineWith(Base):
                 HYJ_jd_tradeType = "开多"
                 HYJ_jd_curAmount = f"{enter_price}"
                 HYJ_jd_remark = f"最新价:{self.last_price}"
-                dingding(f"res_buy:{res_buy}")
+                dingding(f"开多交易所返回:{res_buy}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.HYJ_jd_ss == -1:
@@ -147,7 +148,7 @@ class LineWith(Base):
                 HYJ_jd_tradeType = "开空"
                 HYJ_jd_curAmount = f"{enter_price}"
                 HYJ_jd_remark = f"最新价:{self.last_price}"
-                dingding(f"res_buy:{res_sell}")
+                dingding(f"开空交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
         elif self.pos > 0:
@@ -174,7 +175,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"规则平多,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 40 and self.high_price - self.last_price > 4:
@@ -196,7 +197,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"多单,A止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 35 and self.high_price - self.last_price > 3.35:
@@ -218,7 +219,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"多单,B止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 30 and self.high_price - self.last_price > 2.6:
@@ -240,7 +241,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"多单,C止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 25 and self.high_price - self.last_price > 1.95:
@@ -262,7 +263,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"多单,D止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 20 and self.high_price - self.last_price > 1.4:
@@ -284,7 +285,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"多单,E止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 15 and self.high_price - self.last_price > 0.95:
@@ -306,7 +307,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"多单,F止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 10 and self.high_price - self.last_price > 0.6:
@@ -328,7 +329,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"多单,G止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.unRealizedProfit > 0 and Profit > self.trading_size * 5 \
@@ -351,7 +352,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"多单,H止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
         elif self.pos < 0:
@@ -368,7 +369,7 @@ class LineWith(Base):
                     self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
                 self.pos = 0
                 HYJ_jd_remark = "盈损:%s,最新价:%s,最高价:%s,最低价:%s" % (
-                    Profit, self.last_price,self.high_price,self.low_price)
+                    Profit, self.last_price, self.high_price, self.low_price)
                 HYJ_jd_tradeType = "平空"
                 HYJ_jd_curAmount = "%s" % self.enter_price
                 self.enter_price = 0
@@ -378,7 +379,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"规则平空,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 40 and self.last_price - self.low_price > 4:
@@ -400,7 +401,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"空单,A止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 35 and self.last_price - self.low_price > 3.35:
@@ -422,7 +423,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"空单,B止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 30 and self.last_price - self.low_price > 2.6:
@@ -444,7 +445,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"空单,C止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 25 and self.last_price - self.low_price > 1.95:
@@ -466,7 +467,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"空单,D止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 20 and self.last_price - self.low_price > 1.4:
@@ -488,7 +489,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"空单,E止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 15 and self.last_price - self.low_price > 0.95:
@@ -510,7 +511,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"空单,F止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.maxunRealizedProfit > self.trading_size * 10 and self.last_price - self.low_price > 0.6:
@@ -532,7 +533,7 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"空单,G止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.unRealizedProfit > 0 and Profit > self.trading_size * 5 \
@@ -555,5 +556,5 @@ class LineWith(Base):
                 self.unRealizedProfit = 0
                 self.lowProfit = 0
                 self.sync_data()
-                dingding(f"res_sell:{res_sell}")
+                dingding(f"空单,H止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)

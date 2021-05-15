@@ -13,6 +13,6 @@ class Broker(object):
         self.event_engine.start()
         self.strategies_dict = {}
 
-    def add_strategy(self, strategy_class,symbol):
-        self.strategies_dict[strategy_class.__name__] = strategy_class(self, symbol)
+    def add_strategy(self, strategy_class, symbol, min_volume):
+        self.strategies_dict[strategy_class.__name__] = strategy_class(self, symbol, min_volume)
 
