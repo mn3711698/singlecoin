@@ -82,8 +82,7 @@ strategies下的base_l37.so重命名为base.so,
 
 
 # 联系
-
-wx:huangyjwx(请注明机器人)
+打开http://small.yjyzj.cn 可以扫码加开发者微信或微信群
 
 # 关于核心代码编译的说明
 
