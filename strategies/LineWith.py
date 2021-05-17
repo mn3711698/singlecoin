@@ -90,7 +90,7 @@ class LineWith(Base):
         else:
             self.sync_data()
 
-    def on_ticker_data(self, ticker):
+    def on_ticker_data(self, ticker):  # 持仓方向为单向,不会设置杠杆
 
         if self.symbol == ticker['symbol']:
             last_price = ticker['last_price']  # 最新的价格.
@@ -102,12 +102,14 @@ class LineWith(Base):
             if self.low_price > 0:
                 self.low_price = min(self.low_price, self.last_price)
 
-        if self.pos == 0:
+        if self.pos == 0:  # 无持仓
 
-            if self.HYJ_jd_ss == 1:
+            if self.HYJ_jd_ss == 1:  # 策略计算出来是开多信号
 
                 self.HYJ_jd_ss = 0
                 pos = self.trading_size
+                if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
+                    pos = pos + pos * self.times
                 self.pos = self.round_to(pos, self.min_volume)
                 enter_price = self.ask  # -1
                 res_buy = self.buy(enter_price, abs(self.pos))
@@ -127,10 +129,12 @@ class LineWith(Base):
                 dingding(f"开多交易所返回:{res_buy}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
-            elif self.HYJ_jd_ss == -1:
+            elif self.HYJ_jd_ss == -1:  # 策略计算出来是开空信号
 
                 self.HYJ_jd_ss = 0
                 pos = self.trading_size
+                if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
+                    pos = pos + pos * self.times
                 self.pos = self.round_to(pos, self.min_volume)
                 enter_price = self.bid  # -1
                 res_sell = self.sell(enter_price, abs(self.pos))
@@ -151,15 +155,18 @@ class LineWith(Base):
                 dingding(f"开空交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
-        elif self.pos > 0:
+        elif self.pos > 0:  # 多单持仓，目前止损是以 HYJ_jd_ss = 11,如有需要其他的止损请在下边增加自己的代码
 
             enter_price = self.bid2  # +1
             Profit = self.round_to((enter_price - self.enter_price) * abs(self.pos), self.min_price)
 
             if self.HYJ_jd_ss == 11:
+                # 单纯使用这个来处理止盈止损才可以达到利润最大化。需要将下边的全注释掉
 
                 res_sell = self.sell(enter_price, abs(self.pos))
                 self.HYJ_jd_ss = 0
+                if Profit < 0:
+                    self.times += 1  # 这个是亏损后加倍开单计数
                 self.stop_price = 0
                 HYJ_jd_first = "规则平多:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
                     self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
@@ -177,7 +184,7 @@ class LineWith(Base):
                 self.sync_data()
                 dingding(f"规则平多,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
-
+            # 利润最大化注释从这开始
             elif self.maxunRealizedProfit > self.trading_size * 40 and self.high_price - self.last_price > 4:
 
                 res_sell = self.sell(enter_price, abs(self.pos))
@@ -355,16 +362,21 @@ class LineWith(Base):
                 dingding(f"多单,H止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
-        elif self.pos < 0:
+                # 利润最大化注释到此结果
+
+        elif self.pos < 0:  # 空单持仓，目前止损是以 HYJ_jd_ss = -11,如有需要其他的止损请在下边增加自己的代码
 
             enter_price = self.ask2
             Profit = self.round_to((self.enter_price - enter_price) * abs(self.pos), self.min_price)
 
             if self.HYJ_jd_ss == -11:
+                # 单纯使用这个来处理止盈止损才可以达到利润最大化。需要将下边的全注释掉
 
                 self.stop_price = 0
                 res_sell = self.buy(enter_price, abs(self.pos))  # 平空
                 self.HYJ_jd_ss = 0
+                if Profit < 0:
+                    self.times += 1  # 这个是亏损后加倍开单计数
                 HYJ_jd_first = "规则平空:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
                     self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
                 self.pos = 0
@@ -382,6 +394,7 @@ class LineWith(Base):
                 dingding(f"规则平空,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
+            # 利润最大化注释从这开始
             elif self.maxunRealizedProfit > self.trading_size * 40 and self.last_price - self.low_price > 4:
 
                 res_sell = self.buy(enter_price, abs(self.pos))  # 平空
@@ -558,3 +571,5 @@ class LineWith(Base):
                 self.sync_data()
                 dingding(f"空单,H止盈,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
+
+            # 利润最大化注释到此结束
