@@ -20,7 +20,7 @@
 
 ## API的权限只需要有交易权限就够了，不要开提币权限,还要限制ip！
 
-# windows支持64位的python,3.8或3.7,linux系统支持python3.6或python3.7
+# 需要准备云主机，windows支持64位的python,3.8或3.7,linux系统支持python3.6或python3.7
 
 # 需要网络可以访问币安交易所，否则机器人无法使用
 
