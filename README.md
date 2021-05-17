@@ -4,7 +4,7 @@
 
 ![](https://github.com/mn3711698/singlecoin/blob/main/order.png)
 
-https://co.yjyzj.cn/admin?viewid=login&part=signal 目前跟踪的五个币的情况,不是每个币都能百分分胜率，但胜率绝对高，唯一的问题就是止盈止损的处理
+https://co.yjyzj.cn/admin?viewid=login&part=signal 目前跟踪的五个币的情况(我实盘目前只跑bnb,eth),不是每个币都能百分百胜率，但胜率绝对高，唯一的问题就是止盈止损的处理
 
 # 当你还在为要不要使用时，不少人因为收益不错问我能不能提供源码
 已经有使用者主动告诉我，他所在的机构使用虚拟机的方式部署跑多个币对(一个虚拟机一个币对)，
