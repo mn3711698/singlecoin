@@ -6,6 +6,8 @@
 # 注意：
 #    持仓方向为单向,不会设置杠杆
 #    下边的dingding_token,wx_openid为空的话是不会发送钉钉消息和公众号消息
+#    以下参数是以ethusdt为交易标的并且仓位为0.003来设定的，如果你的交易标的不是ethusdt或仓位不是0.003那请自行计算修改
+
 
 key = ""  # 币安API的key
 secret = ""  # 币安API的secret
