@@ -253,7 +253,7 @@ class LineWith(Base):
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
                 elif self.unRealizedProfit > 0 and Profit > self.trading_size * 30 \
-                        and self.high_price - self.last_price > 3 and self.stop_price <= self.low_price:
+                        and self.high_price - self.last_price > 1 and self.stop_price <= self.low_price:
 
                     res_sell = self.sell(enter_price, abs(self.pos))
                     self.HYJ_jd_ss = 0
@@ -376,7 +376,7 @@ class LineWith(Base):
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
                 elif self.unRealizedProfit > 0 and Profit > self.trading_size * 30 \
-                        and self.last_price - self.low_price > 3 and self.stop_price <= self.high_price:
+                        and self.last_price - self.low_price > 1 and self.stop_price <= self.high_price:
 
                     res_sell = self.buy(enter_price, abs(self.pos))  # 平空
                     self.HYJ_jd_ss = 0
