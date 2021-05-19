@@ -111,7 +111,9 @@ class LineWith(Base):
                     if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
                         pos = pos + pos * self.times
                     self.pos = self.round_to(pos, self.min_volume)
-                    enter_price = self.ask  # -1
+                    enter_price = self.ask
+                    if self.place_order != 1:
+                        enter_price = max(self.o_price, self.hh)
                     res_buy = self.buy(enter_price, abs(self.pos))
                     self.enter_price = enter_price
                     self.stop_price = enter_price - self.price_stop
@@ -136,7 +138,9 @@ class LineWith(Base):
                     if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
                         pos = pos + pos * self.times
                     self.pos = self.round_to(pos, self.min_volume)
-                    enter_price = self.bid  # -1
+                    enter_price = self.bid
+                    if self.place_order != 1:
+                        enter_price = min(self.o_price, self.ll)
                     res_sell = self.sell(enter_price, abs(self.pos))
                     self.pos = -self.pos
                     self.enter_price = enter_price
@@ -186,6 +190,8 @@ class LineWith(Base):
                 elif self.HYJ_jd_ss == 11:  # self.HYJ_jd_ss = 11 是趋势反转了
                     if self.enter_price - self.last_price > self.trend_price_stop:
                         # 趋势反转了而且还亏损,持仓价比当前价大config.py的trend_price_stop，平仓
+                        if self.place_order != 1:
+                            enter_price = min(self.o_price, self.ll)
                         res_sell = self.sell(enter_price, abs(self.pos))
                         self.HYJ_jd_ss = 0
                         if Profit < 0:
@@ -209,7 +215,8 @@ class LineWith(Base):
                         wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
                     elif self.unRealizedProfit > 0 and Profit > 0:  # 趋势反转了且有钱赚就止盈
-
+                        if self.place_order != 1:
+                            enter_price = min(self.o_price, self.ll)
                         res_sell = self.sell(enter_price, abs(self.pos))
                         self.HYJ_jd_ss = 0
                         HYJ_jd_first = "规则反转止盈:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
@@ -306,9 +313,11 @@ class LineWith(Base):
                     dingding(f"固定止损平空,交易所返回:{res_sell}")
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
-                if self.HYJ_jd_ss == -11:
+                elif self.HYJ_jd_ss == -11:
 
                     if self.last_price > self.enter_price > self.trend_price_stop:
+                        if self.place_order != 1:
+                            enter_price = max(self.o_price, self.hh)
                         self.stop_price = 0
                         res_sell = self.buy(enter_price, abs(self.pos))  # 平空
                         self.HYJ_jd_ss = 0
@@ -332,7 +341,8 @@ class LineWith(Base):
                         wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
                     elif self.unRealizedProfit > 0 and Profit > 0:
-
+                        if self.place_order != 1:
+                            enter_price = max(self.o_price, self.hh)
                         res_sell = self.buy(enter_price, abs(self.pos))  # 平空
                         self.HYJ_jd_ss = 0
                         HYJ_jd_first = "规则反转止盈:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (

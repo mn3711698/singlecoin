@@ -7,7 +7,7 @@
 import logging
 from apscheduler.schedulers.background import BlockingScheduler
 from RunUse import TradeRun
-from config import key, secret, symbol, trading_size
+from config import key, secret, symbol, trading_size, version_flag
 
 
 format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -17,7 +17,7 @@ logging.getLogger("apscheduler").setLevel(logging.WARNING)  # 设置apscheduler.
 
 
 if __name__ == '__main__':
-    RunTrade = TradeRun(key, secret, symbol, trading_size)
+    RunTrade = TradeRun(key, secret, symbol, trading_size, version_flag)
     scheduler = BlockingScheduler()  # 定时的任务.
     scheduler.add_job(RunTrade.get_kline_data, trigger='cron', second='*/2')
     scheduler.add_job(RunTrade.get_open_orders, trigger='cron', second='*/1')

@@ -11,12 +11,12 @@ if platform.system() == 'Windows':
         try:
             from .base import Base
         except Exception as e:
-            raise ValueError("请将本目前下的base_w38重命名为base替换原来的base")
+            raise ValueError(e)
     elif '3.7' in platform.python_version():
         try:
             from .base import Base
         except Exception as e:
-            raise ValueError("请将本目前下的base_w37重命名为base替换原来的base")
+            raise ValueError(e)
     else:
         raise ValueError("python版本未提供支持")
 elif platform.system() == 'Linux':
@@ -24,12 +24,12 @@ elif platform.system() == 'Linux':
         try:
             from .base import Base
         except Exception as e:
-            raise ValueError("请将本目前下的base_l36.so重命名为base.so替换原来的base.so")
+            raise ValueError(e)
     elif '3.7' in platform.python_version():
         try:
             from .base import Base
         except Exception as e:
-            raise ValueError("请将本目前下的base_l37.so重命名为base.so替换原来的base.so")
+            raise ValueError(e)
     else:
         raise ValueError("python版本未提供支持")
 else:
