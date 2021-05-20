@@ -244,7 +244,7 @@ class LineWith(Base):
                     HYJ_jd_first = "止盈:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
                         self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
                     self.pos = 0
-                    HYJ_jd_remark = "H:净利:%s,最新价:%s,最高价:%s,最低价:%s" % (
+                    HYJ_jd_remark = "G:净利:%s,最新价:%s,最高价:%s,最低价:%s" % (
                         Profit, self.last_price, self.high_price, self.low_price)
                     self.stop_price = 0
                     HYJ_jd_tradeType = "平多"
@@ -290,7 +290,6 @@ class LineWith(Base):
                 Profit = self.round_to((self.enter_price - enter_price) * abs(self.pos), self.min_price)
 
                 if self.last_price - self.enter_price > self.difference_stop:  # 固定止损价差价
-
                     res_sell = self.buy(enter_price, abs(self.pos))  # 平空
                     self.stop_price = 0
                     self.HYJ_jd_ss = 0
