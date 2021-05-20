@@ -90,10 +90,29 @@ class LineWith(Base):
         else:
             self.sync_data()
 
-    # 注意,需要改名，你想使用那个就将on_ticker_data_x改名为on_ticker_data
-    # 我用的是on_ticker_data_3,将on_ticker_data_3改名为on_ticker_data
+    def on_ticker_data(self, ticker):
+        if self.tick_flag == 1:
+            self.ticker_data_one(ticker)
+        elif self.tick_flag == 2:
+            self.ticker_data_two(ticker)
+        elif self.tick_flag == 3:
+            self.ticker_data_three(ticker)
+        else:  # 这个提供自定义
+            self.ticker_data_four(ticker)
 
-    def on_ticker_data_3(self, ticker):  # 2021-05-20增加, 这里根据策略计算出来的趋势进行平仓，不知道收益的正负，只有平仓后才知道。
+    def ticker_data_four(self, ticker):  # 请参考其他三个写自己的
+
+        if self.symbol == ticker['symbol']:
+            last_price = float(ticker['last_price'])  # 最新的价格.
+            self.last_price = last_price
+
+            if self.pos != 0:
+                if self.high_price > 0:
+                    self.high_price = max(self.high_price, self.last_price)
+                if self.low_price > 0:
+                    self.low_price = min(self.low_price, self.last_price)
+
+    def ticker_data_three(self, ticker):  # 2021-05-20增加, 这里根据策略计算出来的趋势进行平仓，不知道收益的正负，只有平仓后才知道。
 
         if self.symbol == ticker['symbol']:
             last_price = float(ticker['last_price'])  # 最新的价格.
@@ -215,7 +234,7 @@ class LineWith(Base):
                 dingding(f"规则平空,交易所返回:{res_sell}")
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
-    def on_ticker_data_2(self, ticker):  # 2021-05-19后使用的开仓,止盈止损代码
+    def ticker_data_two(self, ticker):  # 2021-05-19后使用的开仓,止盈止损代码
 
         if self.symbol == ticker['symbol']:
             last_price = float(ticker['last_price'])  # 最新的价格.
@@ -532,7 +551,7 @@ class LineWith(Base):
                     dingding(f"空单,H止盈,交易所返回:{res_sell}")
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
-    def on_ticker_data_1(self, ticker):  # 2021-05-19之前的开仓,止盈止损处理代码,提供参数
+    def ticker_data_one(self, ticker):  # 2021-05-19之前的开仓,止盈止损处理代码,提供参数
 
         if self.symbol == ticker['symbol']:
             last_price = ticker['last_price']  # 最新的价格.
