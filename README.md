@@ -87,15 +87,20 @@ strategies下的base_l37.so重命名为base.so,
     
     tick_flag的值与self.tick_flag相同
     
-    self.ticker_data_one(ticker)这里的代码为最初这个机器人使用的止盈止损处理，这样提供多级止盈。止损由策略信号判断，策略计算认为行情的趋势反转了
+    self.ticker_data_one(ticker)这里的代码为最初这个机器人使用的止盈止损处理，
+    这样提供多级止盈。止损由策略信号判断，策略计算认为行情的趋势反转了
     就进行平仓，这个平仓会盈利与会亏损。其他部分为止盈，可根据自己的需要修改相关参数
     
-    self.ticker_data_two(ticker)这里的代码比ticker_data_one增加固定止损值，止盈值也增大了。当策略计算认为行情的趋势要反转的时候，
-    分别止盈止损处理，止盈是马上执行处理，止损要判断当前是不是亏损到一定程度，以trend_price_stop值为比较，超过了就进行止损。
+    self.ticker_data_two(ticker)这里的代码比ticker_data_one增加固定止损值，
+    止盈值也增大了。当策略计算认为行情的趋势要反转的时候，
+    分别止盈止损处理，止盈是马上执行处理，止损要判断当前是不是亏损到一定程度，
+    以trend_price_stop值为比较，超过了就进行止损。
     
-    self.ticker_data_three(ticker)这里的代码仅以策略计算行情的趋势来进行判断，不管盈亏，只要趋势反转了就马上平仓不论盈亏。
+    self.ticker_data_three(ticker)这里的代码仅以策略计算行情的趋势来进行判断，
+    不管盈亏，只要趋势反转了就马上平仓不论盈亏。
     
-    self.ticker_data_four(ticker)这里的代码与ticker_data_two差别不大，就是少了固定止损值。其他处理相同。
+    self.ticker_data_four(ticker)这里的代码与ticker_data_two差别不大，
+    就是少了固定止损值。其他处理相同。
 ## 百分百胜率说明(并不是每个币都能保证)
 
 config.py配置是我跑ETH的默认配置，代码也是我跑eth相关的设置。
