@@ -8,7 +8,7 @@
 #    下边的dingding_token,wx_openid为空的话是不会发送钉钉消息和公众号消息
 #    以下参数是以ethusdt为交易标的并且仓位为0.003来设定的，如果你的交易标的不是ethusdt或仓位不是0.003那请自行计算修改
 
-version_flag = '20210520'
+version_flag = '202105202'
 
 key = ""  # 币安API的key
 secret = ""  # 币安API的secret
@@ -16,6 +16,7 @@ symbol = ""  # 交易对,目前公保证支持BTCUSDT,ETHUSDT这两个
 dingding_token = ""  # 钉钉webhook的access_token
 wx_openid = ""  # 关注简道斋后发送openid得到的那一串字符就是这个
 trading_size = 0.003  # 下单量,至少要比币对最小值要大,注意控制风险 btc最小为0.001,eth最小为0.003,还要注意价值要大于5u
+tick_flag = 3  # 请看strategies/LineWith.py文件的on_ticker_data，根据这个值的不同执行不同的处理，提供1,2,3选择，默认是3，其他值为自定义
 
 place_order = 1  # 是否以五档价进行开仓,1为是,其他值为否,通常五档价会马上成交,如未成交则orders_seconds的秒后取消订单,这个参数我为0
 orders_seconds = 240  # 当Place_order不为1时,这个值才会有明显效果,表示多少秒后取消订单
