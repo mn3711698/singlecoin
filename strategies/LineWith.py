@@ -115,7 +115,6 @@ class LineWith(Base):
             if self.pos == 0:  # 无持仓
 
                 if self.HYJ_jd_ss == 1:  # 策略计算出来是开多信号
-
                     self.HYJ_jd_ss = 0
                     pos = self.trading_size
                     if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
@@ -142,7 +141,6 @@ class LineWith(Base):
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
                 elif self.HYJ_jd_ss == -1:  # 策略计算出来是开空信号
-
                     self.HYJ_jd_ss = 0
                     pos = self.trading_size
                     if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
@@ -278,7 +276,7 @@ class LineWith(Base):
 
                 if self.HYJ_jd_ss == -11:
 
-                    if self.last_price > self.enter_price > self.trend_price_stop:
+                    if self.last_price - self.enter_price > self.trend_price_stop:
                         if self.place_order != 1:  # config.py的place_order设置
                             enter_price = max(self.o_price, self.hh)
                         self.stop_price = 0
@@ -412,7 +410,6 @@ class LineWith(Base):
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
                 elif self.HYJ_jd_ss == -1:  # 策略计算出来是开空信号
-
                     self.HYJ_jd_ss = 0
                     pos = self.trading_size
                     if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
@@ -508,7 +505,6 @@ class LineWith(Base):
             if self.pos == 0:  # 无持仓
 
                 if self.HYJ_jd_ss == 1:  # 策略计算出来是开多信号
-
                     self.HYJ_jd_ss = 0
                     pos = self.trading_size
                     if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
@@ -535,7 +531,6 @@ class LineWith(Base):
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
                 elif self.HYJ_jd_ss == -1:  # 策略计算出来是开空信号
-
                     self.HYJ_jd_ss = 0
                     pos = self.trading_size
                     if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
@@ -717,7 +712,7 @@ class LineWith(Base):
 
                 elif self.HYJ_jd_ss == -11:
 
-                    if self.last_price > self.enter_price > self.trend_price_stop:
+                    if self.last_price - self.enter_price > self.trend_price_stop:
                         if self.place_order != 1:  # config.py的place_order设置
                             enter_price = max(self.o_price, self.hh)
                         self.stop_price = 0
@@ -825,7 +820,6 @@ class LineWith(Base):
         if self.pos == 0:  # 无持仓
 
             if self.HYJ_jd_ss == 1:  # 策略计算出来是开多信号
-
                 self.HYJ_jd_ss = 0
                 pos = self.trading_size
                 if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
@@ -850,7 +844,6 @@ class LineWith(Base):
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.HYJ_jd_ss == -1:  # 策略计算出来是开空信号
-
                 self.HYJ_jd_ss = 0
                 pos = self.trading_size
                 if self.times_flag == 1 and self.times != 0:  # 进行加倍开单

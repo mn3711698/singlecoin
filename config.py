@@ -8,7 +8,7 @@
 #    下边的dingding_token,wx_openid为空的话是不会发送钉钉消息和公众号消息
 #    以下参数是以ethusdt为交易标的并且仓位为0.003来设定的，如果你的交易标的不是ethusdt或仓位不是0.003那请自行计算修改
 
-version_flag = '202105202'
+version_flag = '20210601'
 
 key = ""  # 币安API的key
 secret = ""  # 币安API的secret
@@ -28,4 +28,4 @@ winPoints = 0.5  # on_pos_data里的self.winPoints,当你觉得这个利润已�
 times_flag = 0  # 亏损后加倍开单数，1开启，0或其他不开启，默认不开启
 trend_price_stop = 95  # 20210519前的止损是以策略判断趋势是否反转来止损，发现这个不够精确，那么将增加这个参数，当亏损价差超过这个值，再趋势反转就止损。
 difference_stop = 105  # 20210519增加固定止损价差价，当现价比持仓价相关这个值且亏损就平仓止损
-
+strategy_flag = 2  # 使用的策略版本,目前有两个版本默认值为1,1为最原来策略，2为在1的基础上再减少开单量,其他值也为1
