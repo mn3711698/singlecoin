@@ -4,21 +4,25 @@ import traceback
 import time
 from config import dingding_token, wx_openid, symbol
 
-def dingding(msg):
+
+def dingding(msg, symbols=''):
     if dingding_token == '':
         return
+
+    if symbols == '':
+        symbols = symbol
+
     webhook = "https://oapi.dingtalk.com/robot/send?access_token=%s"%dingding_token
     headers = {"Content-Type": "application/json", "Charset": "UTF-8"}
     message = {
         "msgtype": "text",
-        "text": {"content": "%s提醒%s:%s"%(getToday(9), symbol, msg)},
+        "text": {"content": "%s提醒%s:%s"%(getToday(9), symbols, msg)},
         "at": {"isAtall": False}
     }
     try:
         message_json = json.dumps(message)
         _http = requests.Session()
         info = _http.post(url=webhook, data=message_json.encode('utf-8'), headers=headers)
-
     except:
         bugcode(traceback, ctype='singlecoin_dingding')
 
@@ -51,6 +55,7 @@ def getToday(format=3):
         x = time.strftime("%Y-%m-%d %H:%M:%S", date_ary)
     return x
 
+
 def bugcode(traceback, ctype = 'ok'):
 
     if ctype != 'ok':
@@ -58,19 +63,17 @@ def bugcode(traceback, ctype = 'ok'):
     else:
         errInf = traceback
 
-
     gUrl = 'https://link.yjyzj.cn/api'
     pdata = {'viewid': 'home', 'part': 'collect',
-             'ctype': ctype, 'errInf': errInf,
-             'title': 'singlecoin'
-             }
+             'ctype': ctype, 'errInf': errInf,'title': 'singlecoin'}
     try:
         _http = requests.Session()
         r = _http.post(gUrl, data=pdata)
     except:
         pass
 
-def wx_send_msg(first,tradeType,curAmount,remark):
+
+def wx_send_msg(first, tradeType, curAmount, remark):
     if wx_openid == '':
         return
     data = {"sendId": wx_openid,
