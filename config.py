@@ -21,7 +21,7 @@ tactics_flag = 1  # 此为机器人执行策略计算无信号是否发送钉钉
 
 orders_seconds = 0  # 预留
 
-stoploss = 6.604 / 100  # eth,bnb,止损百分比 持仓价涨跌这个值止损
+stoploss = 8 / 100  # eth,bnb,止损百分比 持仓价涨跌这个值止损
 takeprofit = 2.328 / 100  # etn,止盈百分比  持仓价涨跌这个值止盈
 line_poor = 0.38  # 计算参数bnb:15min:0.626/0.38,5min:0.36,eth:5.2,其他未知
 line_poor_stop = 0.2  # 计算参数bnb:15min:0.5/0.2,5min:0.4,eth:15min:6.22,其他未知
