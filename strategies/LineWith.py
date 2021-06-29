@@ -67,11 +67,10 @@ class LineWith(Base):
 
                 if self.HYJ_jd_ss == 1:  # 策略计算出来是开多信号
                     pos = self.trading_size
-                    # if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
-                    #     pos = pos + 0.01 * self.times
                     self.pos = self.round_to(pos, self.min_volume)
                     enter_price = self.ask
                     res_buy = self.buy(enter_price, abs(self.pos))
+                    self.HYJ_jd_ss = 0
                     self.enter_price = enter_price
                     self.stoploss_price = enter_price * (1 - self.stoploss)
                     self.takeprofit_price = enter_price * (1 + self.takeprofit)
@@ -91,12 +90,11 @@ class LineWith(Base):
 
                 elif self.HYJ_jd_ss == -1:  # 策略计算出来是开空信号
                     pos = self.trading_size
-                    # if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
-                    #     pos = pos + 0.01 * self.times
                     self.pos = self.round_to(pos, self.min_volume)
                     enter_price = self.bid
 
                     res_sell = self.sell(enter_price, abs(self.pos))
+                    self.HYJ_jd_ss = 0
                     self.pos = -self.pos
                     self.enter_price = enter_price
                     self.stoploss_price = enter_price * (1 + self.stoploss)
