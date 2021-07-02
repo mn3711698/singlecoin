@@ -287,6 +287,7 @@ class LineWith(Base):
             if self.pos == 0:  # 无持仓
 
                 if self.HYJ_jd_ss == 1:  # 策略计算出来是开多信号
+                    self.HYJ_jd_ss = 0
                     pos = self.trading_size
                     # if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
                     #     pos = pos + 0.01 * self.times
@@ -311,6 +312,7 @@ class LineWith(Base):
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
                 elif self.HYJ_jd_ss == -1:  # 策略计算出来是开空信号
+                    self.HYJ_jd_ss = 0
                     pos = self.trading_size
                     # if self.times_flag == 1 and self.times != 0:  # 进行加倍开单
                     #     pos = pos + 0.01 * self.times

@@ -18,7 +18,6 @@ if __name__ == '__main__':
     RunTrade = TradeRun()
     scheduler = BlockingScheduler()  # 定时的任务.
     scheduler.add_job(RunTrade.get_kline_data, trigger='cron', second='*/2')  # 主计算k线
-    # scheduler.add_job(RunTrade.wave_update, trigger='cron', hour='*/1', minute='0', second='2')  # 副计算k线
     scheduler.add_job(RunTrade.get_open_orders, trigger='cron', second='*/2')  # 未成交单
     scheduler.add_job(RunTrade.get_position, trigger='cron', second='*/3')  # 仓位
     scheduler.start()
