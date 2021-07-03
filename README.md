@@ -39,7 +39,7 @@ BNB参数跑ETH仓位1每单
 
 ## API的权限只需要有交易权限就够了，不要开提币权限,还要限制ip！
 
-# 需要准备云主机，windows支持64位的python,3.8或3.7,linux系统支持python3.6或python3.7
+# 需要准备云主机，windows支持64位的python,3.8或3.7,linux系统支持python3.6
 
 # 需要网络可以访问币安交易所，否则机器人无法使用
 
@@ -69,9 +69,8 @@ strategies下的base_w37.pyd重命名为base.pyd,
 
 安装相关库(只支持python3)  pip3 install -r requirements.txt 或 pip install -r requirements.txt
 
-填好config.py里边的配置项，确认python版本，如果使用的是python3.7要将RunUse里的TradeRun_l37.so重命名为TradeRun.so，
-strategies下的base_l37.so重命名为base.so,
-如果使用的是python3.6要将RunUse里的TradeRun_l36.so重命名为TradeRun.so,strategies下的base_l36.so重命名为base.so
+填好config.py里边的配置项，确认python版本为python3.6，
+要将RunUse里的TradeRun_l36.so重命名为TradeRun.so,strategies下的base_l36.so重命名为base.so
 
 到此所有准备工作都做好了。在项目目录/var/games/singlecoin/下执行python3 Start.py 或python Start.py ,就可以躺着赚钱了
 
