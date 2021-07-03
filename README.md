@@ -2,11 +2,17 @@
 
 ## 目前只支持BNB,ETH。非开源，慎用!
 
-# 策略说明
+# 策略计算及下单平仓条件说明
 
-两条移动线，对比两个线的值。在配置里line_poor,line_poor_stop,两个参数。当两个移动线的值大于line_poor，表示趋势向下或向上，要下单，当两个值小于line_poor_stop，表示很小的震荡或者趋势不明显，平仓。
+两条移动线，对比两个线的值。在配置里line_poor,line_poor_stop,两个参数。当两个移动线的值相差大于line_poor，表示趋势明显向下或向上，要下单，当两个值小于line_poor_stop，表示很小的震荡或者趋势不明显，平仓。
 
-已经在跑机器人，钉钉消息有几个值old_wave,Raw,Wave,Raw - wave。当Wave大于old_wave是趋势向上，反之趋势向下，Raw和Wave是两个移动线的值，Raw比Wave大是向上，反之向下，Raw - wave的绝对大于line_poor就开仓，小于line_poor_stop就平仓。趋势相反了也平仓。
+已经在跑机器人，钉钉消息有几个值old_wave,Raw,Wave,Raw - wave。当Wave大于old_wave是趋势向上，反之趋势向下，Raw和Wave是两个移动线的值，Raw比Wave大是向上，反之向下，Raw - wave的绝对值大于line_poor就开仓，小于line_poor_stop就平仓。趋势相反了也平仓。
+
+开仓：Wave大于old_wave且Raw - wave的绝对值大于line_poor开多,Wave不大于old_wave且Raw - wave的绝对值大于line_poor开空.
+
+平仓:多单，Wave不大于old_wave或Raw - wave小于line_poor_stop平仓;空单,Wave大于old_wave或Raw - wave小于line_poor_stop平空.
+
+因为用tradingview回测，没看到平仓条件且还达到下单条件马上下单的效果，所以平仓后要跟完一根K线再判断是不是要下单。不会平仓的同时马上反方向下单。
 
 # 最优配置
 
