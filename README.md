@@ -2,7 +2,19 @@
 
 ## 目前只支持BNB,ETH。非开源，慎用!
 
-以下为策略在tradingview采用15min线进行的回测
+# 策略说明
+
+两条移动线，对比两个线的值。在配置里line_poor,line_poor_stop,两个参数。当两个移动线的值大于line_poor，表示趋势向下或向上，要下单，当两个值小于line_poor_stop，表示很小的震荡或者趋势不明显，平仓。
+
+已经在跑机器人，钉钉消息有几个值old_wave,Raw,Wave,Raw - wave。当Wave大于old_wave是趋势向上，反之趋势向下，Raw和Wave是两个移动线的值，Raw比Wave大是向上，反之向下，Raw - wave的绝对大于line_poor就开仓，小于line_poor_stop就平仓。趋势相反了也平仓。
+
+# 最优配置
+
+ETH:line_poor=0.38,line_poor_stop=0.2
+
+BNB:line_poor=0.38,line_poor_stop=0.2;  line_poor=0.04,line_poor_stop=0.05(最好)
+
+## 以下为策略在tradingview采用15min线进行的回测
 BNB仓位0.02每单
 ![](https://github.com/mn3711698/singlecoin/blob/main/BNB0.02.png)
 BNB仓位1每单
