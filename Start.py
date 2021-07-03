@@ -19,5 +19,5 @@ if __name__ == '__main__':
     scheduler = BlockingScheduler()  # 定时的任务.
     scheduler.add_job(RunTrade.get_kline_data, trigger='cron', second='*/2')  # 主计算k线
     scheduler.add_job(RunTrade.get_open_orders, trigger='cron', second='*/2')  # 未成交单
-    scheduler.add_job(RunTrade.get_position, trigger='cron', second='*/3')  # 仓位
+    scheduler.add_job(RunTrade.get_position, trigger='cron', second='*/1')  # 仓位
     scheduler.start()
