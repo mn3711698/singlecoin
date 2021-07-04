@@ -7,7 +7,7 @@
 #    持仓方向为单向,不会设置杠杆
 #    下边的dingding_token,wx_openid为空的话是不会发送钉钉消息和公众号消息
 
-version_flag = '20210703'
+version_flag = '20210704'
 
 key = ""  # 币安API的key
 secret = ""  # 币安API的secret
