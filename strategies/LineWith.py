@@ -262,6 +262,32 @@ class LineWith(Base):
                     self.HYJ_jd_ss_old = 1
                     res_sell = self.sell(enter_price, abs(self.pos))
                     self.HYJ_jd_ss = 0
+                    HYJ_jd_first = "止盈A:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
+                        self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
+                    self.pos = 0
+                    HYJ_jd_remark = "净利:%s,最新价:%s,最高价:%s,最低价:%s" % (
+                        Profit, self.last_price, self.high_price, self.low_price)
+                    self.times = 0
+                    self.stoploss_price = 0
+                    self.takeprofit_price = 0
+                    self.stop_price = 0
+                    HYJ_jd_tradeType = "平多"
+                    HYJ_jd_curAmount = "%s" % enter_price
+                    self.enter_price = 0
+                    self.high_price = 0
+                    self.low_price = 0
+                    self.maxunRealizedProfit = 0
+                    self.unRealizedProfit = 0
+                    self.lowProfit = 0
+                    self.sync_data()
+                    dingding(f"多单,止盈A,交易所返回:{res_sell}")
+                    wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
+
+                elif self.maxunRealizedProfit > 0.1 and self.high_price - self.last_price > 1:
+
+                    self.HYJ_jd_ss_old = 1
+                    res_sell = self.sell(enter_price, abs(self.pos))
+                    self.HYJ_jd_ss = 0
                     HYJ_jd_first = "止盈B:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
                         self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
                     self.pos = 0
@@ -281,6 +307,32 @@ class LineWith(Base):
                     self.lowProfit = 0
                     self.sync_data()
                     dingding(f"多单,止盈B,交易所返回:{res_sell}")
+                    wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
+
+                elif self.maxunRealizedProfit > 0.05 and self.high_price - self.last_price > 2:
+
+                    self.HYJ_jd_ss_old = 1
+                    res_sell = self.sell(enter_price, abs(self.pos))
+                    self.HYJ_jd_ss = 0
+                    HYJ_jd_first = "止盈C:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
+                        self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
+                    self.pos = 0
+                    HYJ_jd_remark = "净利:%s,最新价:%s,最高价:%s,最低价:%s" % (
+                        Profit, self.last_price, self.high_price, self.low_price)
+                    self.times = 0
+                    self.stoploss_price = 0
+                    self.takeprofit_price = 0
+                    self.stop_price = 0
+                    HYJ_jd_tradeType = "平多"
+                    HYJ_jd_curAmount = "%s" % enter_price
+                    self.enter_price = 0
+                    self.high_price = 0
+                    self.low_price = 0
+                    self.maxunRealizedProfit = 0
+                    self.unRealizedProfit = 0
+                    self.lowProfit = 0
+                    self.sync_data()
+                    dingding(f"多单,止盈C,交易所返回:{res_sell}")
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
             elif self.pos < 0:  # 空单持仓
@@ -345,6 +397,32 @@ class LineWith(Base):
                     self.HYJ_jd_ss_old = -1
                     res_sell = self.buy(enter_price, abs(self.pos))  # 平空
                     self.HYJ_jd_ss = 0
+                    HYJ_jd_first = "止盈A:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
+                        self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
+                    self.pos = 0
+                    HYJ_jd_tradeType = "平空"
+                    HYJ_jd_curAmount = "%s" % self.enter_price
+                    HYJ_jd_remark = "净利:%s,最新价:%s,最高价:%s,最低价:%s" % (
+                        Profit, self.last_price, self.high_price, self.low_price)
+                    self.times = 0
+                    self.stoploss_price = 0
+                    self.takeprofit_price = 0
+                    self.stop_price = 0
+                    self.enter_price = 0
+                    self.high_price = 0
+                    self.low_price = 0
+                    self.maxunRealizedProfit = 0
+                    self.unRealizedProfit = 0
+                    self.lowProfit = 0
+                    self.sync_data()
+                    dingding(f"空单,止盈A,交易所返回:{res_sell}")
+                    wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
+
+                elif self.maxunRealizedProfit > 0.1 and self.last_price - self.low_price > 1:
+
+                    self.HYJ_jd_ss_old = -1
+                    res_sell = self.buy(enter_price, abs(self.pos))  # 平空
+                    self.HYJ_jd_ss = 0
                     HYJ_jd_first = "止盈B:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
                         self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
                     self.pos = 0
@@ -364,4 +442,30 @@ class LineWith(Base):
                     self.lowProfit = 0
                     self.sync_data()
                     dingding(f"空单,止盈B,交易所返回:{res_sell}")
+                    wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
+
+                elif self.maxunRealizedProfit > 0.5 and self.last_price - self.low_price > 2:
+
+                    self.HYJ_jd_ss_old = -1
+                    res_sell = self.buy(enter_price, abs(self.pos))  # 平空
+                    self.HYJ_jd_ss = 0
+                    HYJ_jd_first = "止盈C:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
+                        self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
+                    self.pos = 0
+                    HYJ_jd_tradeType = "平空"
+                    HYJ_jd_curAmount = "%s" % self.enter_price
+                    HYJ_jd_remark = "净利:%s,最新价:%s,最高价:%s,最低价:%s" % (
+                        Profit, self.last_price, self.high_price, self.low_price)
+                    self.times = 0
+                    self.stoploss_price = 0
+                    self.takeprofit_price = 0
+                    self.stop_price = 0
+                    self.enter_price = 0
+                    self.high_price = 0
+                    self.low_price = 0
+                    self.maxunRealizedProfit = 0
+                    self.unRealizedProfit = 0
+                    self.lowProfit = 0
+                    self.sync_data()
+                    dingding(f"空单,止盈C,交易所返回:{res_sell}")
                     wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
