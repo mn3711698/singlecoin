@@ -89,6 +89,8 @@ class LineWith(Base):
                 HYJ_jd_remark = f"最新价:{self.last_price}"
                 dingding(f"开空2,交易所返回:{res_sell}", symbols=self.symbol)
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
+            else:
+                self.pos_flag = 0
 
     def on_ticker_data(self, ticker):
         self.ticker_data(ticker)
