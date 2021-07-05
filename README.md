@@ -14,11 +14,11 @@
 
 因为用tradingview回测，没看到平仓条件且还达到下单条件马上下单的效果，所以平仓后要跟完一根K线再判断是不是要下单。不会平仓的同时马上反方向下单。
 
-# 最优配置
+# tradingview回测最优配置(bnb0.02,eth0.003)
 
-ETH:line_poor=0.38,line_poor_stop=0.2
+ETH:line_poor=0.38,line_poor_stop=0.2(净利润25.17%，胜率40.9%);  line_poor=0.626,line_poor_stop=0.5(净利润29.69%，胜率41.05%);
 
-BNB:line_poor=0.38,line_poor_stop=0.2;  line_poor=0.04,line_poor_stop=0.05(最好)
+BNB:line_poor=0.38,line_poor_stop=0.2(净利润25.23%，胜率42.59%);  line_poor=0.04,line_poor_stop=0.05(净利润39.19%，胜率42.42%), line_poor=0.04,line_poor_stop=0.048(净利润39.83%，胜率42.25%)
 
 ## 以下为策略在tradingview采用15min线进行的回测
 BNB仓位0.02每单
