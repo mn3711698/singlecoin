@@ -44,7 +44,9 @@ class LineWith(Base):
                 self.sync_data()
                 return
         if current_pos == 0 and len(self.open_orders) == 0:
-            if self.pos_flag == 1:  # 开多未成交,取消未成交订单再下单
+            coraup = self.cora_wave > self.old_cora_wave
+            raw_wave = abs(self.cora_raw - self.cora_wave) > self.line_poor
+            if self.pos_flag == 1 and coraup and raw_wave:  # 开多未成交,取消未成交订单再下单
                 self.pos_flag = 0
                 self.pos = self.round_to(self.trading_size, self.min_volume)
                 enter_price = self.ask
@@ -63,9 +65,9 @@ class LineWith(Base):
                 HYJ_jd_tradeType = "开多2"
                 HYJ_jd_curAmount = f"{enter_price}"
                 HYJ_jd_remark = f"最新价:{self.last_price}"
-                dingding(f"开多交易所返回:{res_buy}", symbols=self.symbol)
+                dingding(f"开多2,交易所返回:{res_buy}", symbols=self.symbol)
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
-            elif self.pos_flag == -1:  # 开空未成交,取消未成交订单再下单
+            elif self.pos_flag == -1 and not coraup and raw_wave:  # 开空未成交,取消未成交订单再下单
                 self.pos_flag = 0
                 self.pos = self.round_to(self.trading_size, self.min_volume)
                 enter_price = self.bid
@@ -85,7 +87,7 @@ class LineWith(Base):
                 HYJ_jd_tradeType = "开空2"
                 HYJ_jd_curAmount = f"{enter_price}"
                 HYJ_jd_remark = f"最新价:{self.last_price}"
-                dingding(f"开空交易所返回:{res_sell}", symbols=self.symbol)
+                dingding(f"开空2,交易所返回:{res_sell}", symbols=self.symbol)
                 wx_send_msg(HYJ_jd_first, HYJ_jd_tradeType, HYJ_jd_curAmount, HYJ_jd_remark)
 
     def on_ticker_data(self, ticker):
