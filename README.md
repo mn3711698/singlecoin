@@ -24,8 +24,9 @@
 ## BNB:
     2021-7-5 
         line_poor=0.38,line_poor_stop=0.2(净利润25.23%，胜率42.59%);  
-        line_poor=0.04,line_poor_stop=0.05(净利润39.19%，胜率42.42%), 
-        line_poor=0.04,line_poor_stop=0.048(净利润39.83%，胜率42.25%)
+        line_poor=0.04,line_poor_stop=0.05(净利润39.19%，胜率42.42%);
+        line_poor=0.04,line_poor_stop=0.048(净利润39.83%，胜率42.25%);
+        line_poor=0.053,line_poor_stop=0.048(净利润40.22%，胜率42.29%)
 
 ## 以下为策略在tradingview采用15min线进行的回测
 BNB仓位0.02每单
