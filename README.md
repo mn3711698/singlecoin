@@ -17,11 +17,22 @@
 # tradingview回测最优配置(bnb0.02,eth0.003),这里每几天进行一次对比记录，方便参考
 
 ## ETH:
+    2021-7-6 
+        line_poor=0.38,line_poor_stop=0.2(净利润24.79%，胜率40.74%);  
+        line_poor=0.626,line_poor_stop=0.5(净利润29.39%，胜率40.78%);
+        
     2021-7-5 
         line_poor=0.38,line_poor_stop=0.2(净利润25.17%，胜率40.9%);  
         line_poor=0.626,line_poor_stop=0.5(净利润29.69%，胜率41.05%);
 
 ## BNB:
+
+    2021-7-6 
+        line_poor=0.38,line_poor_stop=0.2(净利润23.92%，胜率42.35%);  
+        line_poor=0.04,line_poor_stop=0.05(净利润38.7%，胜率42.14%);
+        line_poor=0.04,line_poor_stop=0.048(净利润38.85%，胜率41.93%);
+        line_poor=0.053,line_poor_stop=0.048(净利润39.24%，胜率41.97%);
+        
     2021-7-5 
         line_poor=0.38,line_poor_stop=0.2(净利润25.23%，胜率42.59%);  
         line_poor=0.04,line_poor_stop=0.05(净利润39.19%，胜率42.42%);
