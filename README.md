@@ -53,6 +53,8 @@ ETH仓位1每单
 BNB参数跑ETH仓位1每单
 ![](https://github.com/mn3711698/singlecoin/blob/main/BNB1TOETH1.png)
 
+BNB仓位0.02每单最新(此图参数暂时不公开,主要是多空采用的参数不一样)
+![](https://github.com/mn3711698/singlecoin/blob/main/BNBnew.png)
 
 ## 本项目只是提供代码，不对使用者因使用本代码实际产生的盈亏负责。不要跟我说开源，我从来就没有想过要开源，只是开放使用。
 
