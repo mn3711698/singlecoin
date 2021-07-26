@@ -56,6 +56,8 @@ BNB参数跑ETH仓位1每单
 BNB仓位0.02每单最新
 ![](https://github.com/mn3711698/singlecoin/blob/main/BNBnew.png)
 
+ETH仓位0.003每单最新
+![](https://github.com/mn3711698/singlecoin/blob/main/eth20210726.png)
 ## 本项目只是提供代码，不对使用者因使用本代码实际产生的盈亏负责。不要跟我说开源，我从来就没有想过要开源，只是开放使用。
 
 ## 可以自行设置计算止盈的配置参数及修改止损配置
