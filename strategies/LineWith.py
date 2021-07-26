@@ -54,7 +54,7 @@ class LineWith(Base):
                 self.pos_flag = 0
                 self.pos = self.round_to(self.trading_size, self.min_volume)
                 enter_price = self.ask
-                res_buy = self.buy(enter_price, abs(self.pos))
+                res_buy = self.buy(enter_price, abs(self.pos), mark=True)
                 self.enter_price = enter_price
                 self.stoploss_price = enter_price * (1 - self.long_stoploss)
                 self.takeprofit_price = enter_price * (1 + self.long_takeprofit)
@@ -75,7 +75,7 @@ class LineWith(Base):
                 self.pos_flag = 0
                 self.pos = self.round_to(self.trading_size, self.min_volume)
                 enter_price = self.bid
-                res_sell = self.sell(enter_price, abs(self.pos))
+                res_sell = self.sell(enter_price, abs(self.pos), mark=True)
                 self.pos = -self.pos
                 self.enter_price = enter_price
                 self.stoploss_price = enter_price * (1 + self.short_stoploss)
@@ -117,7 +117,7 @@ class LineWith(Base):
                     self.HYJ_jd_ss = 0
                     self.pos = self.round_to(self.trading_size, self.min_volume)
                     enter_price = self.ask
-                    res_buy = self.buy(enter_price, abs(self.pos))
+                    res_buy = self.buy(enter_price, abs(self.pos), mark=True)
                     self.enter_price = enter_price
                     self.stoploss_price = enter_price * (1 - self.long_stoploss)
                     self.takeprofit_price = enter_price * (1 + self.long_takeprofit)
@@ -139,7 +139,7 @@ class LineWith(Base):
                     self.HYJ_jd_ss = 0
                     self.pos = self.round_to(self.trading_size, self.min_volume)
                     enter_price = self.bid
-                    res_sell = self.sell(enter_price, abs(self.pos))
+                    res_sell = self.sell(enter_price, abs(self.pos), mark=True)
                     self.pos = -self.pos
                     self.enter_price = enter_price
                     self.stoploss_price = enter_price * (1 + self.short_stoploss)
@@ -162,7 +162,7 @@ class LineWith(Base):
                     self.HYJ_jd_ss = 0
                     self.pos = self.round_to(self.trading_size, self.min_volume)
                     enter_price = self.ask
-                    res_buy = self.buy(enter_price, abs(self.pos))
+                    res_buy = self.buy(enter_price, abs(self.pos), mark=True)
                     self.enter_price = enter_price
                     self.stoploss_price = enter_price * (1 - self.long_stoploss)
                     self.takeprofit_price = enter_price * (1 + self.long_takeprofit)
@@ -184,7 +184,7 @@ class LineWith(Base):
                     self.HYJ_jd_ss = 0
                     self.pos = self.round_to(self.trading_size, self.min_volume)
                     enter_price = self.bid
-                    res_sell = self.sell(enter_price, abs(self.pos))
+                    res_sell = self.sell(enter_price, abs(self.pos), mark=True)
                     self.pos = -self.pos
                     self.enter_price = enter_price
                     self.stoploss_price = enter_price * (1 + self.short_stoploss)
@@ -210,7 +210,7 @@ class LineWith(Base):
 
                 if self.HYJ_jd_ss == 11:  # self.HYJ_jd_ss = 11 是趋势反转了
                     self.HYJ_jd_ss_old = 1
-                    res_sell = self.sell(enter_price, abs(self.pos))
+                    res_sell = self.sell(enter_price, abs(self.pos), mark=True)
                     self.HYJ_jd_ss = 0
                     self.stop_price = 0
                     HYJ_jd_first = "趋势反转平多:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
@@ -234,7 +234,7 @@ class LineWith(Base):
 
                 elif self.HYJ_jd_ss == 22:  # self.HYJ_jd_ss = 22 是趋势收缩了
                     self.HYJ_jd_ss_old = 1
-                    res_sell = self.sell(enter_price, abs(self.pos))
+                    res_sell = self.sell(enter_price, abs(self.pos), mark=True)
                     self.HYJ_jd_ss = 0
                     self.stop_price = 0
                     HYJ_jd_first = "趋势收缩平多:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
@@ -258,7 +258,7 @@ class LineWith(Base):
 
                 elif self.last_price < self.stoploss_price:
                     self.HYJ_jd_ss_old = 1
-                    res_sell = self.sell(enter_price, abs(self.pos))
+                    res_sell = self.sell(enter_price, abs(self.pos), mark=True)
                     self.HYJ_jd_ss = 0
 
                     self.times += 1  # 这个是连续亏损计数
@@ -284,7 +284,7 @@ class LineWith(Base):
 
                 elif self.takeprofit_price != 0 and self.last_price > self.takeprofit_price:
                     self.HYJ_jd_ss_old = 1
-                    res_sell = self.sell(enter_price, abs(self.pos))
+                    res_sell = self.sell(enter_price, abs(self.pos), mark=True)
                     self.HYJ_jd_ss = 0
                     HYJ_jd_first = "止盈A:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
                         self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
@@ -418,7 +418,7 @@ class LineWith(Base):
                 if self.HYJ_jd_ss == -11:
                     self.HYJ_jd_ss_old = -1
                     self.stop_price = 0
-                    res_sell = self.buy(enter_price, abs(self.pos))  # 平空
+                    res_sell = self.buy(enter_price, abs(self.pos), mark=True)  # 平空
                     self.HYJ_jd_ss = 0
                     HYJ_jd_first = "趋势反转平空:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
                         self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
@@ -441,7 +441,7 @@ class LineWith(Base):
                 elif self.HYJ_jd_ss == -22:
                     self.HYJ_jd_ss_old = -1
                     self.stop_price = 0
-                    res_sell = self.buy(enter_price, abs(self.pos))  # 平空
+                    res_sell = self.buy(enter_price, abs(self.pos), mark=True)  # 平空
                     self.HYJ_jd_ss = 0
                     HYJ_jd_first = "趋势收缩平空:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
                         self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
@@ -465,7 +465,7 @@ class LineWith(Base):
                 elif self.stoploss_price != 0 and self.last_price > self.stoploss_price:
                     self.HYJ_jd_ss_old = -1
                     self.stop_price = 0
-                    res_sell = self.buy(enter_price, abs(self.pos))  # 平空
+                    res_sell = self.buy(enter_price, abs(self.pos), mark=True)  # 平空
                     self.HYJ_jd_ss = 0
                     self.times += 1  # 这个是连续亏损计数
 
@@ -490,7 +490,7 @@ class LineWith(Base):
 
                 elif self.takeprofit_price > self.last_price:
                     self.HYJ_jd_ss_old = -1
-                    res_sell = self.buy(enter_price, abs(self.pos))  # 平空
+                    res_sell = self.buy(enter_price, abs(self.pos), mark=True)  # 平空
                     self.HYJ_jd_ss = 0
                     HYJ_jd_first = "止盈A:交易对:%s,最大亏损:%s,最大利润:%s,当前利润:%s,仓位:%s" % (
                         self.symbol, self.lowProfit, self.maxunRealizedProfit, self.unRealizedProfit, self.pos)
