@@ -2,7 +2,7 @@
 ## 注:执行RunBTC.py有多币，多币不提供白嫖
 ## 非开源，慎用! 一定要加群,因为如果持仓情况与Tv的不同，那就肯定是亏损的
 
-# 执行Start.py(熊市牛B)目前只支持BNB,ETH.执行RunBTC.py(牛市牛B)只支持BTCUSDT,YFIUSDT. 
+# 执行Start.py(熊市牛B)目前只支持BNB,ETH.执行RunBTC.py(牛市牛B)只支持BTCUSDT,YFIUSDT(别看下边的图有ZECUSDT直接用，参数不一样的). 
 
 # 策略计算及下单平仓条件说明(执行Start.py,执行RunBTC.py不提供说明)
 
@@ -43,7 +43,7 @@
         
 ## 有开发能力，如有在不泄漏策略代码并能对策略进行使用或者回测方案的可以联系我。（注：同一币种，同一配置参数，同一时间周期开仓及平仓的时机所有人一样）
 
-## 以下为策略在tradingview采用15min线进行的回测
+## 以下为策略在tradingview采用15min线进行的回测(执行Start.py)
 BNB仓位0.02每单
 ![](https://github.com/mn3711698/singlecoin/blob/main/BNB0.02.png)
 BNB仓位1每单
@@ -60,6 +60,17 @@ BNB仓位0.02每单最新
 
 ETH仓位0.003每单最新
 ![](https://github.com/mn3711698/singlecoin/blob/main/eth20210726.png)
+
+## 以下为策略在tradingview采用15min线进行的回测(执行RunBTC.py)
+btcusdt
+![](https://github.com/mn3711698/singlecoin/blob/main/btcusdt.png)
+
+yfiusdt
+![](https://github.com/mn3711698/singlecoin/blob/main/yfiusdt.png)
+
+zecusdt
+![](https://github.com/mn3711698/singlecoin/blob/main/zecusdt.png)
+
 ## 本项目只是提供代码，不对使用者因使用本代码实际产生的盈亏负责。不要跟我说开源，我从来就没有想过要开源，只是开放使用。
 
 ## 可以自行设置计算止盈的配置参数及修改止损配置
@@ -123,6 +134,8 @@ strategies下的base_w37.pyd重命名为base.pyd,
 建议使用git命令来下载，这样更新就不影响。
 
 # 更新日志
+
+2021-09-03 增加TV回测图片
 
 2021-09-03 增加一个策略。因为之前的策略空单交易好，多单不行，暂时没有想到办法优化，只能另搞一个策略。
 
