@@ -2,9 +2,11 @@
 ## 注:执行RunBTC.py有多币，多币不提供白嫖
 ## 非开源，慎用! 一定要加群,因为如果持仓情况与Tv的不同，那就肯定是亏损的
 
-# 执行Start.py(熊市牛B)目前只支持BNB,ETH.执行RunBTC.py(牛市牛B)只支持BTCUSDT,YFIUSDT(别看下边的图有ZECUSDT直接用，参数不一样的). 
+# 执行Start.py(熊市牛B)目前只支持BNB,ETH
 
-# 策略计算及下单平仓条件说明(执行Start.py,执行RunBTC.py不提供说明)
+# 执行RunBTC.py(牛市牛B)只支持BTCUSDT,YFIUSDT(别看下边的图有ZECUSDT直接用，参数不一样的). 注：特别提醒，这里的代码我是直接搬过来，因为我跑的是多币，这里是单币代码我没有实际跑。
+
+# 策略计算及下单平仓条件说明(为执行Start.py,执行RunBTC.py不提供说明)
 
 两条移动线，对比两个线的值。在配置里line_poor,line_poor_stop,两个参数。当两个移动线的值相差大于line_poor，表示趋势明显向下或向上，要下单，当两个值小于line_poor_stop，表示很小的震荡或者趋势不明显，平仓。
 
@@ -61,7 +63,7 @@ BNB仓位0.02每单最新
 ETH仓位0.003每单最新
 ![](https://github.com/mn3711698/singlecoin/blob/main/eth20210726.png)
 
-## 以下为策略在tradingview采用15min线进行的回测(执行RunBTC.py)
+## 以下为策略在tradingview进行的回测(执行RunBTC.py)
 btcusdt
 ![](https://github.com/mn3711698/singlecoin/blob/main/btcusdt.png)
 
