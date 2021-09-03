@@ -1,8 +1,10 @@
 # singlecoin(支持windows+linux,交易所目前只支持币安,目前只支持单币运行)
+## 注:执行RunBTC.py有多币，多币不提供白嫖
+## 非开源，慎用! 一定要加群,因为如果持仓情况与Tv的不同，那就肯定是亏损的
 
-## 目前只支持BNB,ETH。非开源，慎用! 一定要加群,因为如果持仓情况与Tv的不同，那就肯定是亏损的
+# 执行Start.py(熊市牛B)目前只支持BNB,ETH.执行RunBTC.py(牛市牛B)只支持BTCUSDT,YFIUSDT. 
 
-# 策略计算及下单平仓条件说明
+# 策略计算及下单平仓条件说明(执行Start.py,执行RunBTC.py不提供说明)
 
 两条移动线，对比两个线的值。在配置里line_poor,line_poor_stop,两个参数。当两个移动线的值相差大于line_poor，表示趋势明显向下或向上，要下单，当两个值小于line_poor_stop，表示很小的震荡或者趋势不明显，平仓。
 
@@ -84,6 +86,8 @@ BNB仓位0.02每单最新
 strategies下的base_w37.pyd重命名为base.pyd,
 如果使用的是python3.8要将RunUse里的TradeRun_w38.pyd重命名为TradeRun.pyd,strategies下的base_w38.pyd重命名为base.pyd
 
+执行RunBTC.py将baseBTC_w37.pyd或base_w38.pyd重命名为baseBTC.pyd
+
 到此，准备工作做好。在项目目录C:\singlecoin\下执行python3 Start.py,就可以躺着赚钱了
 
 相关持仓及订单信息请看币安的网页或者APP对应的交易对下的数据。
@@ -103,6 +107,8 @@ strategies下的base_w37.pyd重命名为base.pyd,
 
 到此所有准备工作都做好了。在项目目录/var/games/singlecoin/下执行python3 Start.py 或python Start.py ,就可以躺着赚钱了
 
+执行RunBTC.py将baseBTC_l36.so重命名为baseBTC.so
+
 相关持仓及订单信息请看币安的网页或者APP对应的交易对下的数据。
 
 建议使用Supervisor启动
@@ -115,6 +121,8 @@ strategies下的base_w37.pyd重命名为base.pyd,
 建议使用git命令来下载，这样更新就不影响。
 
 # 更新日志
+
+2021-09-03 增加一个策略。因为之前的策略空单交易好，多单不行，暂时没有想到办法优化，只能另搞一个策略。
 
 2021-07-08 将下单改为市价，避免与TV不同步导致不明亏损
 

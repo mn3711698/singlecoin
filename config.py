@@ -7,11 +7,12 @@
 #    持仓方向为单向,不会设置杠杆
 #    下边的dingding_token,wx_openid为空的话是不会发送钉钉消息和公众号消息
 
-version_flag = '20210708'
+version_flag = '20210903'
 
 key = ""  # 币安API的key
 secret = ""  # 币安API的secret
 symbol = "BNBUSDT"  # 交易对,目前保证支持BNBUSDT,ETHUSDT这两个
+# trading_size BTCUSDT,YFIUSDT最小为0.001
 trading_size = 0.02  # 下单量,至少要比币对最小值要大,注意控制风险 eth最小为0.003,BNB:0.02 还要注意价值要大于5u
 
 dingding_token = ""  # 钉钉webhook的access_token
